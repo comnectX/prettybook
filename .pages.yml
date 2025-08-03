@@ -1,14 +1,16 @@
 media:
   input: public/assets
   output: /assets
-  categories: [ "image" ]
+  categories: ["image"]
+
 content:
+  # ✅ Blog Posts
   - name: posts
     label: Posts
     type: collection
     path: _posts
     view:
-      fields: [ coverImage, title, date ]
+      fields: [coverImage, title, date]
     fields:
       - { name: title, label: Title, type: string, required: true }
       - { name: excerpt, label: Excerpt, type: string }
@@ -26,3 +28,39 @@ content:
         fields:
           - { name: url, label: URL, type: image }
       - { name: body, label: Body, type: rich-text }
+
+  # ✅ Books
+  - name: books
+    label: Books
+    type: collection
+    path: _books
+    view:
+      fields: [coverImage, title, author]
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: author, label: Author, type: string }
+      - { name: publisher, label: Publisher, type: string }
+      - { name: publicationYear, label: Publication Year, type: number }
+      - { name: isbn, label: ISBN, type: string }
+      - { name: price, label: Price, type: number }
+      - { name: buyLink, label: Buy Link, type: string }
+      - { name: category, label: Category, type: string }
+      - { name: tags, label: Tags, type: list, field: { name: tag, label: Tag, type: string } }
+      - { name: coverImage, label: Cover Image, type: image }
+      - { name: shortDescription, label: Short Description, type: text }
+      - { name: longDescription, label: Long Description, type: rich-text }
+      - { name: editorOpinion, label: Editor Opinion, type: rich-text }
+      - { name: slug, label: Slug, type: string }
+
+  # ✅ Categories
+  - name: categories
+    label: Categories
+    type: collection
+    path: _categories
+    view:
+      fields: [title]
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: slug, label: Slug, type: string }
+      - { name: description, label: Description, type: rich-text }
+      - { name: coverImage, label: Cover Image, type: image }
