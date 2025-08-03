@@ -16,11 +16,7 @@ content:
       - { name: excerpt, label: Excerpt, type: string }
       - { name: coverImage, label: Cover image, type: image }
       - { name: date, label: Date, type: date, options: { time: true, format: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" } }
-      - name: author
-        label: Author
-        type: object
-        fields:
-          - { name: name, label: Name, type: string }
+      - { name: author, label: Author, type: string, required: true }
       - name: ogImage
         label: Image (social sharing)
         type: object
