@@ -20,6 +20,7 @@ const CoverImage = ({ title, src, slug }: Props) => {
       height={630}
       priority={!slug} // Prioritize hero images
       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      unoptimized={src.startsWith('http')} // Disable optimization for external images
     />
   );
   return (
