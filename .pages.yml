@@ -21,7 +21,6 @@ content:
         type: object
         fields:
           - { name: name, label: Name, type: string }
-          - { name: picture, label: Picture, type: image }
       - name: ogImage
         label: Image (social sharing)
         type: object
