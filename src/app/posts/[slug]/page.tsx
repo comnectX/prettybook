@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { PageProps } from "next";
 import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "../../../lib/api";
 import { CMS_NAME } from "../../../lib/constants";
@@ -10,7 +9,7 @@ import Header from "../../_components/header";
 import { PostBody } from "../../_components/post-body";
 import { PostHeader } from "../../_components/post-header";
 
-export default async function Post({ params }: PageProps<{ slug: string }>) {
+export default async function Post({ params }: { params: { slug: string } }) {
   let post;
   
   try {
@@ -45,7 +44,7 @@ export default async function Post({ params }: PageProps<{ slug: string }>) {
   );
 }
 
-export function generateMetadata({ params }: PageProps<{ slug: string }>): Metadata {
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   let post;
   
   try {
