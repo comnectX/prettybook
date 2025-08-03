@@ -15,10 +15,15 @@ export function getPostBySlug(slug: string) {
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 
-  // Ensure date is always a string for the DateFormatter component
+  // Ensure all required fields are strings and handle missing values
   const processedData = {
     ...data,
-    date: data.date instanceof Date ? data.date.toISOString() : data.date
+    title: String(data.title || ''),
+    excerpt: String(data.excerpt || ''),
+    author: data.author || { name: 'Unknown', picture: '/assets/blog/authors/jj.jpeg' },
+    date: data.date instanceof Date ? data.date.toISOString() : String(data.date || new Date().toISOString()),
+    coverImage: String(data.coverImage || '/assets/blog/hello-world/cover.jpg'),
+    ogImage: data.ogImage || { url: String(data.coverImage || '/assets/blog/hello-world/cover.jpg') }
   };
 
   return { ...processedData, slug: realSlug, content } as Post;
