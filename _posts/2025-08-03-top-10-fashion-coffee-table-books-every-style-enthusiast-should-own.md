@@ -6,6 +6,8 @@ excerpt: From runway retrospectives to luxury‑house chronicles, these fashion
 date: 2025-07-31T11:00:00.000Z
 author: Prettybook
 coverImage: https://jyqzkirtikwikqwrkazq.supabase.co/storage/v1/object/public/images//in-vogue.webp
+ogImage:
+  url: https://jyqzkirtikwikqwrkazq.supabase.co/storage/v1/object/public/images//in-vogue.webp
 ---
 \## 1. In Vogue: An Illustrated History of the World's Most Famous Fashion Magazine
 
