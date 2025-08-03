@@ -11,7 +11,14 @@ import { PostBody } from "../../_components/post-body";
 import { PostHeader } from "../../_components/post-header";
 
 export default async function Post({ params }: PageProps<{ slug: string }>) {
-  const post = getPostBySlug(params.slug);
+  let post;
+  
+  try {
+    post = getPostBySlug(params.slug);
+  } catch (error) {
+    console.error(`Failed to load post: ${params.slug}`, error);
+    return notFound();
+  }
 
   if (!post) {
     return notFound();
@@ -39,10 +46,22 @@ export default async function Post({ params }: PageProps<{ slug: string }>) {
 }
 
 export function generateMetadata({ params }: PageProps<{ slug: string }>): Metadata {
-  const post = getPostBySlug(params.slug);
+  let post;
+  
+  try {
+    post = getPostBySlug(params.slug);
+  } catch (error) {
+    return {
+      title: 'Post Not Found',
+      description: 'The requested post could not be found.'
+    };
+  }
 
   if (!post) {
-    return notFound();
+    return {
+      title: 'Post Not Found',
+      description: 'The requested post could not be found.'
+    };
   }
 
   const title = `${post.title} | Next.js Blog Example with ${CMS_NAME}`;
