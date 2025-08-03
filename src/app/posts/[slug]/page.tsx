@@ -44,11 +44,12 @@ export default async function Post({ params }: { params: { slug: string } }) {
   );
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
   let post;
   
   try {
-    post = getPostBySlug(params.slug);
+    post = getPostBySlug(slug);
   } catch (error) {
     return {
       title: 'Post Not Found',
