@@ -9,13 +9,14 @@ import Header from "../../_components/header";
 import { PostBody } from "../../_components/post-body";
 import { PostHeader } from "../../_components/post-header";
 
-export default async function Post({ params }: { params: { slug: string } }) {
+export default async function Post({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   let post;
   
   try {
-    post = getPostBySlug(params.slug);
+    post = getPostBySlug(slug);
   } catch (error) {
-    console.error(`Failed to load post: ${params.slug}`, error);
+    console.error(`Failed to load post: ${slug}`, error);
     return notFound();
   }
 
